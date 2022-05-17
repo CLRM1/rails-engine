@@ -259,7 +259,7 @@
         "lines": [
           1,
           1,
-          null,
+          1,
           null,
           null
         ]
@@ -269,8 +269,27 @@
           1,
           null
         ]
+      },
+      "/Users/chrisromero/turing/3module/projects/rails-engine/app/serializers/merchants_serializer.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          null,
+          2,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
       }
     },
-    "timestamp": 1652823309
+    "timestamp": 1652824329
   }
 }
