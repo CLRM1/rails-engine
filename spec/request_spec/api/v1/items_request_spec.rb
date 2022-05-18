@@ -50,4 +50,26 @@ RSpec.describe 'Items API' do
     expect(new_item.unit_price).to eq(10)
     expect(new_item.merchant_id).to eq(merchant.id)
   end
+
+  it 'fails to create a new item when attributes are missing' do
+
+    merchant = Merchant.create!(name: 'Chris')
+
+    item_params = ({
+        name: 'ball',
+        description: 'You can throw it.',
+        merchant_id: merchant.id
+      })
+
+    headers = {"CONTENT_TYPE" => "application/json"}
+
+    post '/api/v1/items', headers: headers, params: JSON.generate(item: item_params)
+
+    new_item = Item.last
+    expect(new_item).to be(nil)
+  end
+
+  it 'deletes an item' do
+
+  end
 end
