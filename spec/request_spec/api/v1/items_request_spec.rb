@@ -65,8 +65,7 @@ RSpec.describe 'Items API' do
 
     post '/api/v1/items', headers: headers, params: JSON.generate(item: item_params)
 
-    new_item = Item.last
-    expect(new_item).to be(nil)
+    expect(Item.count).to be(0)
   end
 
   it 'deletes an item' do
