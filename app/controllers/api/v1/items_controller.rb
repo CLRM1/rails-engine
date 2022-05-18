@@ -15,6 +15,10 @@ class Api::V1::ItemsController < ApplicationController
     render json: Item.create(item_params), status: :ok
   end
 
+  def update
+    render json: Item.update(params[:id], item_params), status: :ok
+  end
+
   private
 
     def item_params

@@ -81,11 +81,12 @@ RSpec.describe 'Items API' do
       })
     headers = {"CONTENT_TYPE" => "application/json"}
 
-    patch "/api/v1/items/#{item.id}", headers: headers, params: JSON.generate(item: item_params)
+    patch "/api/v1/items/#{item.id}", headers: headers, params: JSON.generate({item: item_params})
 
+    updated_item = Item.find(item.id)
     expect(response).to be_successful
-    expect(item.name).to_not eq('ball')
-    expect(item.name).to eq('frisbee')
+    expect(updated_item.name).to_not eq('ball')
+    expect(updated_item.name).to eq('frisbee')
   end
 
   # it 'deletes an item' do
