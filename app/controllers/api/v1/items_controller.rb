@@ -1,10 +1,10 @@
 class Api::V1::ItemsController < ApplicationController
   def index
-    if params[:merchant_id]
-      render json: ItemsSerializer.format_merchant_items(Merchant.find(params[:merchant_id])), status: :ok
-    else
-      render json: ItemsSerializer.format_items(Item.all), status: :ok
-    end
+    render json: ItemsSerializer.format_items(Item.all), status: :ok
+  end
+
+  def index_merchants
+    render json: ItemsSerializer.format_merchant_items(Merchant.find(params[:merchant_id])), status: :ok
   end
 
   def show
@@ -17,11 +17,12 @@ class Api::V1::ItemsController < ApplicationController
 
   def update
     # require 'pry'; binding.pry
-    # if Merchant.includes(Merchant.find(params[:merchant_id]))
+
+    # if !Merchant.includes(Merchant.find(params[:merchant_id]))
+      # render :json => { :errors => '404'}
+    # else
       Item.update(params[:id], item_params)
       render json: ItemsSerializer.format_item(Item.find(params[:id])), status: :ok
-    # else
-      # render :json => { :errors => '404'}
     # end
   end
 
