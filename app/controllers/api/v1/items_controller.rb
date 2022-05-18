@@ -16,8 +16,13 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def update
-    Item.update(params[:id], item_params)
-    render json: ItemsSerializer.format_item(Item.find(params[:id])), status: :ok 
+    # require 'pry'; binding.pry
+    # if Merchant.includes(Merchant.find(params[:merchant_id]))
+      Item.update(params[:id], item_params)
+      render json: ItemsSerializer.format_item(Item.find(params[:id])), status: :ok
+    # else
+      # render :json => { :errors => '404'}
+    # end
   end
 
   private
