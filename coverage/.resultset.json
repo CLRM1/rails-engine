@@ -228,15 +228,32 @@
       },
       "/Users/chrisromero/turing/3module/projects/rails-engine/spec/request_spec/api/v1/items_request_spec.rb": {
         "lines": [
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          0,
+          null,
+          0,
+          0,
           null,
           null,
+          1,
+          1,
+          null,
+          0,
+          null,
+          0,
+          0,
           null,
           null,
+          1,
           null,
+          1,
           null,
-          null,
-          null,
-          null,
+          0,
           null,
           null
         ]
@@ -343,6 +360,6 @@
         ]
       }
     },
-    "timestamp": 1652837126
+    "timestamp": 1652837268
   }
 }
