@@ -12,4 +12,17 @@ class MerchantsSerializer
       end
     }
   end
+
+  def self.format_merchant(merchant)
+    {
+      data:
+      {
+        id: merchant.id,
+        type: 'merchant',
+        attributes: {
+          name: merchant.name
+        }
+      }
+    }
+  end
 end
