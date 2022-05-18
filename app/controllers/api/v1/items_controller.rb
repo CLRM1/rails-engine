@@ -10,4 +10,14 @@ class Api::V1::ItemsController < ApplicationController
   def show
     render json: ItemsSerializer.format_item(Item.find(params[:id])), status: :ok
   end
+
+  def create
+    render json: Item.create(item_params), status: :ok
+  end
+
+  private
+
+    def item_params
+      params.require(:item).permit(:name, :description, :unit_price, :merchant_id)
+    end
 end
