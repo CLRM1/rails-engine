@@ -204,6 +204,17 @@
           null
         ]
       },
+      "/Users/chrisromero/turing/3module/projects/rails-engine/spec/factories/items.rb": {
+        "lines": [
+          1,
+          1,
+          5,
+          5,
+          5,
+          null,
+          null
+        ]
+      },
       "/Users/chrisromero/turing/3module/projects/rails-engine/spec/factories/merchants.rb": {
         "lines": [
           1,
@@ -221,6 +232,7 @@
           1,
           1,
           1,
+          1,
           null,
           null,
           null
@@ -234,26 +246,26 @@
           1,
           1,
           null,
-          0,
+          1,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          1,
           null,
           0,
           0,
           null,
           null,
           1,
-          1,
-          null,
-          0,
-          null,
-          0,
-          0,
-          null,
           null,
           1,
           null,
           1,
-          null,
-          0,
           null,
           null
         ]
@@ -293,7 +305,6 @@
       "/Users/chrisromero/turing/3module/projects/rails-engine/app/models/merchant.rb": {
         "lines": [
           1,
-          null,
           null
         ]
       },
@@ -301,6 +312,48 @@
         "lines": [
           1,
           1,
+          null
+        ]
+      },
+      "/Users/chrisromero/turing/3module/projects/rails-engine/app/models/item.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/Users/chrisromero/turing/3module/projects/rails-engine/app/controllers/api/v1/items_controller.rb": {
+        "lines": [
+          1,
+          1,
+          2,
+          null,
+          null
+        ]
+      },
+      "/Users/chrisromero/turing/3module/projects/rails-engine/app/controllers/application_controller.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/Users/chrisromero/turing/3module/projects/rails-engine/app/serializers/items_serializer.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          2,
+          null,
+          2,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
           null
         ]
       },
@@ -314,12 +367,6 @@
           1,
           1,
           null,
-          null
-        ]
-      },
-      "/Users/chrisromero/turing/3module/projects/rails-engine/app/controllers/application_controller.rb": {
-        "lines": [
-          1,
           null
         ]
       },
@@ -360,6 +407,6 @@
         ]
       }
     },
-    "timestamp": 1652837268
+    "timestamp": 1652838689
   }
 }
