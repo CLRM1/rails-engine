@@ -16,7 +16,8 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def update
-    render json: Item.update(params[:id], item_params), status: :ok
+    Item.update(params[:id], item_params)
+    render json: ItemsSerializer.format_item(Item.find(params[:id])), status: :ok 
   end
 
   private
