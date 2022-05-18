@@ -208,9 +208,10 @@
         "lines": [
           1,
           1,
-          7,
-          7,
-          7,
+          5,
+          5,
+          5,
+          1,
           null,
           null
         ]
@@ -219,7 +220,7 @@
         "lines": [
           1,
           1,
-          7,
+          5,
           null,
           null
         ]
@@ -247,13 +248,15 @@
           1,
           1,
           1,
-          null,
           1,
           null,
           1,
+          null,
+          1,
           1,
           null,
           null,
+          1,
           1,
           1,
           null,
@@ -303,11 +306,12 @@
           null,
           null,
           1,
-          1,
-          1,
+          null,
           null,
           1,
           null,
+          1,
+          1,
           1,
           null,
           null
@@ -315,6 +319,7 @@
       },
       "/Users/chrisromero/turing/3module/projects/rails-engine/app/models/merchant.rb": {
         "lines": [
+          1,
           1,
           null
         ]
@@ -328,6 +333,7 @@
       },
       "/Users/chrisromero/turing/3module/projects/rails-engine/app/models/item.rb": {
         "lines": [
+          1,
           1,
           null
         ]
@@ -359,7 +365,7 @@
           null,
           2,
           null,
-          4,
+          3,
           null,
           null,
           null,
@@ -443,6 +449,6 @@
         ]
       }
     },
-    "timestamp": 1652840473
+    "timestamp": 1652887173
   }
 }

@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'Items API' do
   it 'sends a list of items' do
-    create_list(:item, 2)
+    merchant = Merchant.create!(name: 'Chris')
+    create_list(:item, 2, merchant_id: merchant.id)
 
     get '/api/v1/items'
 
@@ -11,7 +12,8 @@ RSpec.describe 'Items API' do
   end
 
   it 'returns attributes for a single item' do
-    create_list(:item, 2)
+    merchant = Merchant.create!(name: 'Chris')
+    create_list(:item, 2, merchant_id: merchant.id)
 
     get "/api/v1/items/#{Item.first.id}"
 
