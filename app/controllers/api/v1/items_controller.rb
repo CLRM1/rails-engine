@@ -1,6 +1,10 @@
 class Api::V1::ItemsController < ApplicationController
   def index
-    render json: ItemsSerializer.format_items(Item.all), status: :ok
+    if params[:merchant_id]
+      render json: ItemsSerializer.format_merchant_items(Merchant.find(params[:merchant_id])), status: :ok
+    else
+      render json: ItemsSerializer.format_items(Item.all), status: :ok
+    end
   end
 
   def show

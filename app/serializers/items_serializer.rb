@@ -35,4 +35,21 @@ class ItemsSerializer
         }
     }
   end
+
+  def self.format_merchant_items(merchant)
+    {
+      data: merchant.items.map do |item|
+        {
+          id: item.id.to_s,
+          type: 'item',
+          attributes: {
+            name: item.name,
+            description: item.description,
+            unit_price: item.unit_price,
+            merchant_id: item.merchant_id
+          }
+        }
+      end
+    }
+  end
 end

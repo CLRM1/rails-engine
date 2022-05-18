@@ -27,10 +27,7 @@ RSpec.describe 'Merchants API' do
   end
 
   it 'returns a merchants items' do
-    # create_list(:merchant, 2)
-    # create_list(:item, 2)
     merchant = Merchant.create!(name: 'Chris')
-    # require 'pry'; binding.pry
     merchant.items.create!(name: 'Ball', description: 'You can throw it.', unit_price: 5, merchant_id: merchant.id)
     get "/api/v1/merchants/#{Merchant.first.id}/items"
     expect(response.body).to include(Item.first.name)

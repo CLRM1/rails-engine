@@ -29,4 +29,8 @@ class MerchantsSerializer
       }
     }
   end
+
+  def self.format_merchant_items(merchant)
+
+  end
 end
