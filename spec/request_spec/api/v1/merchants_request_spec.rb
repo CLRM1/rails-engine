@@ -25,4 +25,13 @@ RSpec.describe 'Merchants API' do
 
     expect(response).to be_successful
   end
+
+  it 'returns a merchants items' do
+    create_list(:merchant, 2)
+    create_list(:item, 2)
+
+    get "/api/v1/merchants/#{Merchant.first.id}/items"
+
+    expect(response.body).to include(Item.first.name)
+  end
 end
