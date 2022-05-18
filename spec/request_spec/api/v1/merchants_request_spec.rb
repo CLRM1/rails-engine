@@ -7,6 +7,7 @@ RSpec.describe 'Merchants API' do
     get '/api/v1/merchants'
 
     expect(response).to be_successful
+    expect(response.body).to include(Merchant.first.id.to_s)
   end
 
   it 'returns attributes for a single merchant' do
@@ -14,6 +15,7 @@ RSpec.describe 'Merchants API' do
 
     get "/api/v1/merchants/#{Merchant.first.id}"
 
+    expect(response.body).to include(Merchant.first.id.to_s)
     expect(response).to be_successful
   end
 
