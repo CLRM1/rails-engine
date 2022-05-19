@@ -16,7 +16,6 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def update
-    # require 'pry'; binding.pry
     if params[:item][:merchant_id] == nil || Merchant.find(params[:item][:merchant_id]) == nil 
       render json: 404
     else
