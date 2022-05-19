@@ -12,7 +12,7 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def create
-    render json: Item.create(item_params), status: :ok
+    render json: ItemsSerializer.format_item(Item.find(Item.create(item_params).id)), status: 201
   end
 
   def update
