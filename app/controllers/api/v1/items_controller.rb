@@ -12,7 +12,10 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def create
-    render json: ItemsSerializer.format_item(Item.find(Item.create(item_params).id)), status: 201
+    item_id = Item.create(item_params).id
+    if item_id != nil
+      render json: ItemsSerializer.format_item(Item.find(item_id)), status: 201
+    end
   end
 
   def update
