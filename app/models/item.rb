@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   belongs_to :merchant
+  has_many :invoices, through: :merchant
 
   validates_presence_of :name
   validates_presence_of :description

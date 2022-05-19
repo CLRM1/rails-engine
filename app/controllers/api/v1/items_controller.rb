@@ -16,12 +16,23 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def update
-    if params[:item][:merchant_id] == nil || Merchant.find(params[:item][:merchant_id]) == nil 
+    if params[:item][:merchant_id] == nil || Merchant.find(params[:item][:merchant_id]) == nil
       render json: 404
     else
       Item.update(params[:id], item_params)
       render json: ItemsSerializer.format_item(Item.find(params[:id])), status: :ok
     end
+  end
+
+  def destroy
+    # require 'pry'; binding.pry
+    if Item.find(params[:id])
+      if Item.find(params[:id]).invoices.count > 0
+        Item.find(params[:id]).invoices.destroy(params[:id])
+      end
+    Item.destroy(params[:id])
+    end
+    # render status: 201
   end
 
   private
