@@ -17,13 +17,12 @@ class Api::V1::ItemsController < ApplicationController
 
   def update
     # require 'pry'; binding.pry
-
-    # if !Merchant.includes(Merchant.find(params[:merchant_id]))
-      # render :json => { :errors => '404'}
-    # else
+    if params[:item][:merchant_id] == nil || Merchant.find(params[:item][:merchant_id]) == nil 
+      render json: 404
+    else
       Item.update(params[:id], item_params)
       render json: ItemsSerializer.format_item(Item.find(params[:id])), status: :ok
-    # end
+    end
   end
 
   private

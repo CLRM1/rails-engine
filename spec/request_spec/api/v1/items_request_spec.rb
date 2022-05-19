@@ -65,7 +65,7 @@ RSpec.describe 'Items API' do
     expect(Item.count).to be(0)
   end
 
-  xit 'updates an item' do
+  it 'updates an item' do
     merchant = Merchant.create!(name: 'Chris')
     item = merchant.items.create!(
         name: 'ball',
@@ -101,7 +101,7 @@ RSpec.describe 'Items API' do
         name: 'frisbee',
         description: 'You can toss it.',
         # unit_price: 10.55,
-        merchant_id: merchant.id
+        # merchant_id: merchant.id
       })
     headers = {"CONTENT_TYPE" => "application/json"}
 
