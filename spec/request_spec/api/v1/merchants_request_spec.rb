@@ -37,8 +37,8 @@ RSpec.describe 'Merchants API' do
     merchant = Merchant.create!(name: 'Chris')
     merchant.items.create!(name: 'Ball', description: 'You can throw it.', unit_price: 5, merchant_id: merchant.id)
 
-    get "/api/v1/items/find?name=chris"
-    
+    get "/api/v1/merchants/find?name=Chris"
+
     expect(response.body).to include(merchant.name)
   end
 end
