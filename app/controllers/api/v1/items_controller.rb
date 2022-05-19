@@ -36,6 +36,10 @@ class Api::V1::ItemsController < ApplicationController
     end
   end
 
+  def find
+    # require 'pry'; binding.pry
+  end
+
   private
 
     def item_params
