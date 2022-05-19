@@ -159,7 +159,7 @@ RSpec.describe 'Items API' do
       merchant_id: merchant.id)
 
     item_2 = merchant.items.create!(
-      name: 'board game',
+      name: 'the board game',
       description: 'You can play with it.',
       unit_price: 15,
       merchant_id: merchant.id)
@@ -182,6 +182,12 @@ RSpec.describe 'Items API' do
     expect(response.body).to include(item.name)
     expect(response.body).to include(item_1.name)
     expect(response.body).to_not include(item_2.name)
+    expect(response.body).to_not include(item_3.name)
+
+    get "/api/v1/items/find?name=gAm"
+
+    expect(response.body).to include(item_2.name)
+    expect(response.body).to_not include(item.name)
     expect(response.body).to_not include(item_3.name)
   end
 end

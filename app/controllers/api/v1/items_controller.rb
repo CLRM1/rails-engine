@@ -38,7 +38,7 @@ class Api::V1::ItemsController < ApplicationController
 
   def find
     search = params[:name].downcase
-    render json: Item.where("name LIKE ?", "%" + search)
+    render json: Item.where("name LIKE ?", "%" + search + "%")
   end
 
   private
