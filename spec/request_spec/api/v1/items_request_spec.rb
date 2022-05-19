@@ -172,16 +172,16 @@ RSpec.describe 'Items API' do
 
     get "/api/v1/items/find?name=all"
 
-    expect(respone.body).to include(item.name)
-    expect(respone.body).to include(item_1.name)
-    expect(respone.body).to_not include(item_2.name)
-    expect(respone.body).to_not include(item_3.name)
+    expect(response.body).to include(item.name)
+    expect(response.body).to include(item_1.name)
+    expect(response.body).to_not include(item_2.name)
+    expect(response.body).to_not include(item_3.name)
 
     get "/api/v1/items/find?name=All"
 
-    expect(respone.body).to include(item.name)
-    expect(respone.body).to include(item_1.name)
-    expect(respone.body).to_not include(item_2.name)
-    expect(respone.body).to_not include(item_3.name)
+    expect(response.body).to include(item.name)
+    expect(response.body).to include(item_1.name)
+    expect(response.body).to_not include(item_2.name)
+    expect(response.body).to_not include(item_3.name)
   end
 end
