@@ -113,11 +113,20 @@ RSpec.describe 'Items API' do
     expect(updated_item.unit_price).to eq(10)
   end
 
-  # it 'deletes an item' do
-  #
-  #   merchant = Merchant.create!(name: 'Chris')
-  #   create_list(:item, 2, merchant_id: merchant.id)
-  #
-  #   delete "/api/v1/merchant/"
-  # end
+  it 'deletes an item' do
+    merchant = Merchant.create!(name: 'Chris')
+    item = merchant.items.create!(
+      name: 'ball',
+      description: 'You can throw it.',
+      unit_price: 10,
+      merchant_id: merchant.id)
+    create_list(:item, 2, merchant_id: merchant.id)
+
+    expect(Item.count).to eq(2)
+    delete "/api/v1/items/#{item.id}"
+
+    expect(response).to be_successful
+    expect(Item.count).to eq(1)
+    expect(Item.find(item.id)).to rais_error(ActiveRecord::RecordNotFound)
+  end
 end
