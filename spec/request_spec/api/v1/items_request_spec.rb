@@ -184,7 +184,7 @@ RSpec.describe 'Items API' do
     expect(response.body).to_not include(item_2.name)
     expect(response.body).to_not include(item_3.name)
 
-    get "/api/v1/items/find?name=gAm"
+    get "/api/v1/items/find?name=gAmE"
 
     expect(response.body).to include(item_2.name)
     expect(response.body).to_not include(item.name)

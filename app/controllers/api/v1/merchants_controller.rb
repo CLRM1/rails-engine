@@ -10,6 +10,10 @@ class Api::V1::MerchantsController < ApplicationController
   def find
     # require 'pry'; binding.pry
     search = params[:name]
-    render json: Merchant.where("name LIKE ?", "%" + search + "%")
+    if Merchant.where("name LIKE ?", "%" + search + "%")
+      render json: Merchant.where("name ILIKE ?", "%" + search + "%")
+    else
+      render json: Merchant.where("name ILIKE ?", "%" + search + "%")
+    end
   end
 end

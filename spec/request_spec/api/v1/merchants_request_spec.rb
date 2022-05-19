@@ -34,10 +34,18 @@ RSpec.describe 'Merchants API' do
   end
 
   it 'returns a merchant based on insensitive case search' do
-    merchant = Merchant.create!(name: 'Chris')
+    merchant = Merchant.create!(name: 'Tech Company')
     merchant.items.create!(name: 'Ball', description: 'You can throw it.', unit_price: 5, merchant_id: merchant.id)
 
-    get "/api/v1/merchants/find?name=Chris"
+    get "/api/v1/merchants/find?name=Company"
+
+    expect(response.body).to include(merchant.name)
+
+    get "/api/v1/merchants/find?name=company"
+
+    expect(response.body).to include(merchant.name)
+
+    get "/api/v1/merchants/find?name=comPany"
 
     expect(response.body).to include(merchant.name)
   end
