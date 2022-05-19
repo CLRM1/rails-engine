@@ -105,10 +105,9 @@ RSpec.describe 'Items API' do
     headers = {"CONTENT_TYPE" => "application/json"}
 
     patch "/api/v1/items/#{item.id}", headers: headers, params: JSON.generate({item: item_params})
-    # require 'pry'; binding.pry
     updated_item = Item.find(item.id)
     expect(response).to be_successful
-    # expect(updated_item.name).to_not eq('ball')
+    expect(updated_item.name).to_not eq('ball')
     expect(updated_item.name).to eq('frisbee')
     expect(updated_item.description).to eq('You can toss it.')
     expect(updated_item.unit_price).to eq(10)
