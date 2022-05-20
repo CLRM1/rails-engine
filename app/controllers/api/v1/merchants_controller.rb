@@ -19,4 +19,17 @@ class Api::V1::MerchantsController < ApplicationController
     render json: MerchantsSerializer.format_merchant(merchant), status: :ok
     end
   end
+
+  def find_all
+    search = params[:name]
+    data_hash = {
+      data: []
+    }
+    merchants = Merchant.where("name ILIKE ?", "%" + search + "%")
+    if Merchant.where("name ILIKE ?", "%" + search + "%").count == 0
+      render json: data_hash, status: 200
+    else
+    render json: MerchantsSerializer.format_merchants(merchants), status: :ok
+    end
+  end
 end
