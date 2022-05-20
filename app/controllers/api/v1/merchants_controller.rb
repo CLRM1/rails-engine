@@ -9,9 +9,9 @@ class Api::V1::MerchantsController < ApplicationController
 
   def find
     data_hash = {data:{}}
-    merchant = Merchant.where("name ILIKE ?", "%" + params[:name] + "%").first
+    merchant = Merchant.find_by_name(params[:name])
 
-    if Merchant.where("name ILIKE ?", "%" + params[:name] + "%").count == 0
+    if merchant == nil
       render json: data_hash, status: 404
     else
       render json: MerchantsSerializer.format_merchant(merchant), status: :ok
@@ -20,9 +20,9 @@ class Api::V1::MerchantsController < ApplicationController
 
   def find_all
     data_hash = {data:[]}
-    merchants = Merchant.where("name ILIKE ?", "%" + params[:name] + "%")
+    merchants = Merchant.find_all_by_name(params[:name])
 
-    if Merchant.where("name ILIKE ?", "%" + params[:name] + "%").count == 0
+    if merchants.count == 0
       render json: data_hash, status: 200
     else
       render json: MerchantsSerializer.format_merchants(merchants), status: :ok
