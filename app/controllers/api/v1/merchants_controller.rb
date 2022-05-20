@@ -8,7 +8,6 @@ class Api::V1::MerchantsController < ApplicationController
   end
 
   def find
-    # require 'pry'; binding.pry
     search = params[:name]
     data_hash = {
       data: {}

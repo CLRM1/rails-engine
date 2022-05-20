@@ -45,11 +45,23 @@ class Api::V1::ItemsController < ApplicationController
       data: {}
     }
     item = Item.where("name ILIKE ?", "%" + search + "%").first
-    # require 'pry'; binding.pry
     if Item.where("name ILIKE ?", "%" + search + "%").count == 0
       render json: data_hash, status: 404
     else
     render json: ItemsSerializer.format_item(item), status: :ok
+    end
+  end
+
+  def find_all
+    search = params[:name]
+    data_hash = {
+      data: []
+    }
+    items = Item.where("name ILIKE ?", "%" + search + "%")
+    if Item.where("name ILIKE ?", "%" + search + "%").count == 0
+      render json: data_hash, status: 404
+    else
+    render json: ItemsSerializer.format_items(items), status: :ok
     end
   end
 
