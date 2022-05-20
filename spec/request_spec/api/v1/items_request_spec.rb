@@ -285,8 +285,7 @@ RSpec.describe 'Items API' do
 
     get "/api/v1/items/find?min_price=160"
 
-    expect(response.body).to include(item.name)
-    expect(response.body).to_not include(item_1.name)
+    expect(response.body).to_not include(item.name)
     expect(response.body).to_not include(item_2.name)
     expect(response.body).to_not include(item_3.name)
   end

@@ -19,5 +19,6 @@ RSpec.describe Item,'Item model' do
 
   context 'relationships' do
     it { should belong_to :merchant }
+    it { should have_many :invoices }
   end
 end
