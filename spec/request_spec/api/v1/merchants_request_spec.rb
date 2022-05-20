@@ -46,7 +46,7 @@ RSpec.describe 'Merchants API' do
     expect(response.body).to include(merchant.name)
 
     get "/api/v1/merchants/find?name=comPany"
-
+    
     expect(response.body).to include(merchant.name)
   end
 end
