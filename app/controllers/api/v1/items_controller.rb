@@ -42,9 +42,8 @@ class Api::V1::ItemsController < ApplicationController
     data_hash = { data: {}}
 
     if params[:min_price]
-      items = Item.where("unit_price >= #{params[:min_price]}")
-      render json: ItemsSerializer.format_items(items), status: :ok
-      # require 'pry'; binding.pry
+      item = Item.where("unit_price >= #{params[:min_price]}").order("name").first
+      render json: ItemsSerializer.format_item(item), status: :ok
     else
       item = Item.where("name ILIKE ?", "%" + search + "%").first
       if Item.where("name ILIKE ?", "%" + search + "%").count == 0
