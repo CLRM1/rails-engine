@@ -1,8 +1,15 @@
 require 'rails_helper'
 
-RSpec.describe 'Merchant model' do
-  it 'exists' do
-    merchant = Merchant.create!(name: 'John')
-    expect(merchant).to be_a(Merchant)
+RSpec.describe Merchant,'Merchant model' do
+  before(:each) do
+    @merchant = Merchant.create!(name: 'John')
+  end
+
+  context 'validations' do
+    it { should validate_presence_of :name }
+  end
+
+  context 'relationships' do
+    it { should have_many :items }
   end
 end

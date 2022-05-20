@@ -214,7 +214,8 @@ RSpec.describe 'Items API' do
       description: 'It blows air.',
       unit_price: 8,
       merchant_id: merchant.id)
-      get "/api/v1/items/find_all?name=all"
+
+    get "/api/v1/items/find_all?name=all"
 
     expect(response.body).to include(item.name)
     expect(response.body).to include(item_1.name)
@@ -222,7 +223,7 @@ RSpec.describe 'Items API' do
     expect(response.body).to_not include(item_3.name)
   end
 
-  it 'returns all items with a specified minimum price' do
+  it 'returns an item with a specified minimum price' do
     merchant = Merchant.create!(name: 'Chris')
     item = merchant.items.create!(
       name: 'ball',
@@ -247,7 +248,42 @@ RSpec.describe 'Items API' do
       description: 'It blows air.',
       unit_price: 9.99,
       merchant_id: merchant.id)
-      get "/api/v1/items/find?min_price=10"
+
+    get "/api/v1/items/find?min_price=10"
+
+    expect(response.body).to include(item.name)
+    expect(response.body).to_not include(item_1.name)
+    expect(response.body).to_not include(item_2.name)
+    expect(response.body).to_not include(item_3.name)
+  end
+
+  it 'returns an error when minimum price is bigger than any price' do
+    merchant = Merchant.create!(name: 'Chris')
+    item = merchant.items.create!(
+      name: 'ball',
+      description: 'You can throw it.',
+      unit_price: 10,
+      merchant_id: merchant.id)
+
+    item_1 = merchant.items.create!(
+      name: 'stall',
+      description: 'You can put things in it.',
+      unit_price: 150,
+      merchant_id: merchant.id)
+
+    item_2 = merchant.items.create!(
+      name: 'the board game',
+      description: 'You can play with it.',
+      unit_price: 20,
+      merchant_id: merchant.id)
+
+    item_3 = merchant.items.create!(
+      name: 'fan',
+      description: 'It blows air.',
+      unit_price: 9.99,
+      merchant_id: merchant.id)
+
+    get "/api/v1/items/find?min_price=160"
 
     expect(response.body).to include(item.name)
     expect(response.body).to_not include(item_1.name)
