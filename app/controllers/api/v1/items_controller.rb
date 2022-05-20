@@ -39,6 +39,7 @@ class Api::V1::ItemsController < ApplicationController
 
   def find
     data_hash = { data: {}}
+
     if (params[:name] && params[:max_price]) || (params[:name] && params[:min_price])
       render json: data_hash, status: 400
     else
@@ -68,7 +69,7 @@ class Api::V1::ItemsController < ApplicationController
         end
       else
         item = Item.find_by_name(params[:name])
-        if Item.where("name ILIKE ?", "%" + params[:name] + "%").count == 0
+        if item == nil
           render json: data_hash, status: 404
         else
           render json: ItemsSerializer.format_item(item), status: :ok
