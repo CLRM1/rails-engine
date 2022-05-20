@@ -289,4 +289,37 @@ RSpec.describe 'Items API' do
     expect(response.body).to_not include(item_2.name)
     expect(response.body).to_not include(item_3.name)
   end
+
+  it 'returns an error when minimum price is less than zero' do
+    merchant = Merchant.create!(name: 'Chris')
+    item = merchant.items.create!(
+      name: 'ball',
+      description: 'You can throw it.',
+      unit_price: 10,
+      merchant_id: merchant.id)
+
+    item_1 = merchant.items.create!(
+      name: 'stall',
+      description: 'You can put things in it.',
+      unit_price: 150,
+      merchant_id: merchant.id)
+
+    item_2 = merchant.items.create!(
+      name: 'the board game',
+      description: 'You can play with it.',
+      unit_price: 20,
+      merchant_id: merchant.id)
+
+    item_3 = merchant.items.create!(
+      name: 'fan',
+      description: 'It blows air.',
+      unit_price: 9.99,
+      merchant_id: merchant.id)
+
+    get "/api/v1/items/find?min_price=-8"
+
+    expect(response.body).to_not include(item.name)
+    expect(response.body).to_not include(item_2.name)
+    expect(response.body).to_not include(item_3.name)
+  end
 end

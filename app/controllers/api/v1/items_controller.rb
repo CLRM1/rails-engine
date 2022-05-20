@@ -42,6 +42,7 @@ class Api::V1::ItemsController < ApplicationController
     data_hash = { data: {}}
 
     if params[:min_price]
+      # move to item model method pass[:min_price] param as argument
       item = Item.where("unit_price >= #{params[:min_price]}").order("name").first
       if item == nil
         render json: data_hash, status: 200
@@ -49,6 +50,7 @@ class Api::V1::ItemsController < ApplicationController
         render json: ItemsSerializer.format_item(item), status: :ok
       end
     else
+      # move to item model method pass[:min_price] param as argument
       item = Item.where("name ILIKE ?", "%" + search + "%").first
       if Item.where("name ILIKE ?", "%" + search + "%").count == 0
         render json: data_hash, status: 404
@@ -61,7 +63,7 @@ class Api::V1::ItemsController < ApplicationController
   def find_all
     search = params[:name]
     data_hash = {data:[]}
-
+    # move to item model method pass[:min_price] param as argument
     items = Item.where("name ILIKE ?", "%" + search + "%")
 
     if Item.where("name ILIKE ?", "%" + search + "%").count == 0
