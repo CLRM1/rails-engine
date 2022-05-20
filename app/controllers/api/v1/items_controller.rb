@@ -38,7 +38,6 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def find
-    search = params[:name]
     data_hash = { data: {}}
     if (params[:name] && params[:max_price]) || (params[:name] && params[:min_price])
       render json: data_hash, status: 400
@@ -47,9 +46,8 @@ class Api::V1::ItemsController < ApplicationController
         if params[:min_price].to_f < 0
           data_hash = { data: {}, error: 'error'}
           render json: data_hash, status: 400
-        # move to item model method pass[:min_price] param as argument
         else
-          item = Item.where("unit_price >= #{params[:min_price]}").order("name").first
+          item = Item.find_by_min_price(params[:min_price])
           if item == nil
             render json: data_hash, status: 200
           else
@@ -60,9 +58,8 @@ class Api::V1::ItemsController < ApplicationController
         if params[:max_price].to_f < 0
           data_hash = { data: {}, error: 'error'}
           render json: data_hash, status: 400
-        # move to item model method pass[:max_price] param as argument
         else
-          item = Item.where("unit_price <= #{params[:max_price]}").order("name").first
+          item = Item.find_by_max_price(params[:max_price])
           if item == nil
             render json: data_hash, status: 200
           else
@@ -70,9 +67,8 @@ class Api::V1::ItemsController < ApplicationController
           end
         end
       else
-          # move to item model method pass[:min_price] param as argument
-        item = Item.where("name ILIKE ?", "%" + search + "%").first
-        if Item.where("name ILIKE ?", "%" + search + "%").count == 0
+        item = Item.find_by_name(params[:name])
+        if Item.where("name ILIKE ?", "%" + params[:name] + "%").count == 0
           render json: data_hash, status: 404
         else
           render json: ItemsSerializer.format_item(item), status: :ok
@@ -82,12 +78,10 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def find_all
-    search = params[:name]
     data_hash = {data:[]}
-    # move to item model method pass[:min_price] param as argument
-    items = Item.where("name ILIKE ?", "%" + search + "%")
+    items = Item.find_all_by_name(params[:name])
 
-    if Item.where("name ILIKE ?", "%" + search + "%").count == 0
+    if items.count == 0
       render json: data_hash, status: 200
     else
       render json: ItemsSerializer.format_items(items), status: :ok
