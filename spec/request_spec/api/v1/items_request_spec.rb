@@ -353,6 +353,5 @@ RSpec.describe 'Items API' do
     get "/api/v1/items/find?max_price=10"
 
     expect(response.body).to include(item.name)
-    expect(response.body).to include(item_3.name)
   end
 end

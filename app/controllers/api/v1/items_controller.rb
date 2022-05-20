@@ -56,6 +56,19 @@ class Api::V1::ItemsController < ApplicationController
             render json: ItemsSerializer.format_item(item), status: :ok
           end
         end
+      elsif params[:max_price]
+        if params[:max_price].to_f < 0
+          data_hash = { data: {}, error: 'error'}
+          render json: data_hash, status: 400
+        # move to item model method pass[:max_price] param as argument
+        else
+          item = Item.where("unit_price <= #{params[:max_price]}").order("name").first
+          if item == nil
+            render json: data_hash, status: 200
+          else
+            render json: ItemsSerializer.format_item(item), status: :ok
+          end
+        end
       else
           # move to item model method pass[:min_price] param as argument
         item = Item.where("name ILIKE ?", "%" + search + "%").first
