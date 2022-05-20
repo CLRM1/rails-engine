@@ -59,7 +59,7 @@ class Api::V1::ItemsController < ApplicationController
     }
     items = Item.where("name ILIKE ?", "%" + search + "%")
     if Item.where("name ILIKE ?", "%" + search + "%").count == 0
-      render json: data_hash, status: 404
+      render json: data_hash, status: 200
     else
     render json: ItemsSerializer.format_items(items), status: :ok
     end
