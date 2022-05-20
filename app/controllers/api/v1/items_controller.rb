@@ -45,7 +45,8 @@ class Api::V1::ItemsController < ApplicationController
     else
       if params[:min_price]
         if params[:min_price].to_f < 0
-          render json: data_hash, status: 200
+          data_hash = { data: {}, error: 'error'}
+          render json: data_hash, status: 400
         # move to item model method pass[:min_price] param as argument
         else
           item = Item.where("unit_price >= #{params[:min_price]}").order("name").first
