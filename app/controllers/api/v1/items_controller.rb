@@ -37,8 +37,20 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def find
-    search = params[:name].downcase
-    render json: Item.where("name LIKE ?", "%" + search + "%")
+    # search = params[:name].downcase
+    # render json: Item.where("name LIKE ?", "%" + search + "%")
+
+    search = params[:name]
+    data_hash = {
+      data: {}
+    }
+    item = Item.where("name ILIKE ?", "%" + search + "%").first
+    # require 'pry'; binding.pry
+    if Item.where("name ILIKE ?", "%" + search + "%").count == 0
+      render json: data_hash, status: 404
+    else
+    render json: ItemsSerializer.format_item(item), status: :ok
+    end
   end
 
   private
