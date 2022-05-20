@@ -13,6 +13,7 @@ class Api::V1::ItemsController < ApplicationController
 
   def create
     item_id = Item.create(item_params).id
+
     if item_id != nil
       render json: ItemsSerializer.format_item(Item.find(item_id)), status: 201
     end
@@ -37,31 +38,33 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def find
-    # search = params[:name].downcase
-    # render json: Item.where("name LIKE ?", "%" + search + "%")
-
     search = params[:name]
-    data_hash = {
-      data: {}
-    }
-    item = Item.where("name ILIKE ?", "%" + search + "%").first
-    if Item.where("name ILIKE ?", "%" + search + "%").count == 0
-      render json: data_hash, status: 404
+    data_hash = { data: {}}
+
+    if params[:min_price]
+      items = Item.where("unit_price >= #{params[:min_price]}")
+      render json: ItemsSerializer.format_items(items), status: :ok
+      # require 'pry'; binding.pry
     else
-    render json: ItemsSerializer.format_item(item), status: :ok
+      item = Item.where("name ILIKE ?", "%" + search + "%").first
+      if Item.where("name ILIKE ?", "%" + search + "%").count == 0
+        render json: data_hash, status: 404
+      else
+        render json: ItemsSerializer.format_item(item), status: :ok
+      end
     end
   end
 
   def find_all
     search = params[:name]
-    data_hash = {
-      data: []
-    }
+    data_hash = {data:[]}
+
     items = Item.where("name ILIKE ?", "%" + search + "%")
+
     if Item.where("name ILIKE ?", "%" + search + "%").count == 0
       render json: data_hash, status: 200
     else
-    render json: ItemsSerializer.format_items(items), status: :ok
+      render json: ItemsSerializer.format_items(items), status: :ok
     end
   end
 

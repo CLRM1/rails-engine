@@ -247,7 +247,7 @@ RSpec.describe 'Items API' do
       description: 'It blows air.',
       unit_price: 9.99,
       merchant_id: merchant.id)
-      get "/api/v1/items/find_all?min_price=10"
+      get "/api/v1/items/find?min_price=10"
 
     expect(response.body).to include(item.name)
     expect(response.body).to include(item_1.name)
