@@ -38,8 +38,9 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def find
-    data_hash = { data: {}}
-
+    data_hash = { data: {} }
+# helper methods in same controller or different controllers
+# nil checks in application controller
     if (params[:name] && params[:max_price]) || (params[:name] && params[:min_price])
       render json: data_hash, status: 400
     else
