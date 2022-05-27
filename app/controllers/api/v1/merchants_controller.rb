@@ -12,6 +12,11 @@ class Api::V1::MerchantsController < ApplicationController
     render json: MerchantsSerializer.format_merchant_revenues(merchants)
   end
 
+  def most_items
+    merchants = Merchant.top_merchant_items(params[:quantity])
+    render json: MerchantsSerializer.format_merchant_items(merchants)
+  end
+
   def find
     data_hash = {data:{}}
     merchant = Merchant.find_by_name(params[:name])

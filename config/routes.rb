@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   get '/api/v1/revenue/merchants', to: 'api/v1/merchants#revenue'
 
+  get 'api/v1/merchants/most_items', to: 'api/v1/merchants#most_items'
+
   namespace :api do
     namespace :v1 do
       resources :merchants do
