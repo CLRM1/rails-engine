@@ -29,4 +29,19 @@ class MerchantsSerializer
       }
     }
   end
+
+  def self.format_merchant_revenues(merchants)
+    {
+      data: merchants.map do |merchant|
+      {
+        id: merchant.id.to_s,
+        type: 'merchant',
+        attributes: {
+          name: merchant.name,
+          revenue: merchant.revenue
+        }
+      }
+    end
+    }
+  end
 end

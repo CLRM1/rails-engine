@@ -7,6 +7,11 @@ class Api::V1::MerchantsController < ApplicationController
     render json: MerchantsSerializer.format_merchant(Merchant.find(params[:id])), status: :ok
   end
 
+  def revenue
+    merchants = Merchant.top_merchants_by_revenue(params[:quantity])
+    render json: MerchantsSerializer.format_merchant_revenues(merchants)
+  end
+
   def find
     data_hash = {data:{}}
     merchant = Merchant.find_by_name(params[:name])
