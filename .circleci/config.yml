@@ -23,8 +23,7 @@ jobs:
       - image: "circleci/ruby:2.7.4"
     steps:
       - checkout
-      - run: 
-          command: bundle install
+      - run: bundle install
           command: bundle exec rspec spec/models/item_spec.rb
 
 # Invoke jobs via workflows
