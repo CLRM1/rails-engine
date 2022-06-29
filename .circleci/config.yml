@@ -24,7 +24,7 @@ jobs:
     steps:
       - checkout
       - run: bundle
-      - run: bundle-exec-rspec-spec/models/item_spec.rb
+      - run: bundle exec rspec spec/models/item_spec.rb
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
