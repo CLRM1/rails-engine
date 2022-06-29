@@ -20,7 +20,7 @@ jobs:
   test: 
     working_directory: ~/.circleci
     docker: 
-      -image: "circleci/ruby:2.7.4"
+      - image: "circleci/ruby:2.7.4"
     steps:
       - checkout
       - run: bundle exec rspec spec/models/item_spec.rb
