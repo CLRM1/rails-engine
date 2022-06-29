@@ -27,9 +27,7 @@ jobs:
     executor: ruby/default
     steps:
       - checkout
-      - run:
-          name: Bundler
-          command: bundle -v
+      - run: bundle -v
       - run: bundle install
     
 # Invoke jobs via workflows
