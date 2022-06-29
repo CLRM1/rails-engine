@@ -25,6 +25,7 @@ jobs:
       - checkout
       - run: bundle install
       - run: rails db:reset
+      - run: rails s
       - run: bundle exec rspec spec/models/item_spec.rb
 
 # Invoke jobs via workflows
