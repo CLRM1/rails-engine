@@ -359,6 +359,7 @@ RSpec.describe 'Items API' do
 
   it 'returns an item with a specified minimum and maximum price' do
     merchant = Merchant.create!(name: 'Chris')
+    
     item = merchant.items.create!(
       name: 'ball',
       description: 'You can throw it.',
