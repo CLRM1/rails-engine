@@ -1,6 +1,6 @@
 # README
 
-Basic Rails API project that exposes RESTful endpoints.
+Rails API exposing RESTful endpoints.
 
 Uses serializers to format response to JSON format.
 
